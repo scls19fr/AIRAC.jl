@@ -93,4 +93,10 @@ using Dates
         @test_throws ArgumentError parse(Airac, "2115")
     end
 
+    @testset "Airac comparison" begin
+        @test Airac() == Airac()
+        @test next(Airac()) > Airac()
+        @test previous(Airac()) < Airac()
+    end
+
 end

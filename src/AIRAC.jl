@@ -104,4 +104,10 @@ function previous(airac::Airac)
   move(airac, -1)
 end
 
+import Base: isless
+
+function isless(airac1::Airac, airac2::Airac)
+  isless(airac1.date, airac2.date)
+end
+
 end
