@@ -63,6 +63,9 @@ using Dates
     end
 
     @testset "Airac struct" begin
+        airac = Airac(Date(2020, 1, 10))
+        @test airac.date == Date(2020, 1, 2)
+
         year = 2020
         airac = Airac(year)
         @test airac.date == Date(2020, 1, 2)
