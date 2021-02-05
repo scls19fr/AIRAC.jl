@@ -2,6 +2,7 @@ using AIRAC
 using AIRAC: airac_date
 using AIRAC: airac_first_cycle_date, airac_last_cycle_date
 using AIRAC: number_airac_cycles, airac_cycle_dates
+using AIRAC: airac_cycle
 using AIRAC: next, previous
 
 using Test
@@ -53,6 +54,12 @@ using Dates
                 @test n == 14
             end
         end
+    end
+
+    @testset "airac_cycle" begin
+        @test airac_cycle(Tuple, Date(2020, 1, 30)) == (2020, 2)
+        @test airac_cycle(2020, 2) == 2002
+        @test airac_cycle(Int, Date(2020, 1, 30)) == 2002
     end
 
     @testset "Airac struct" begin

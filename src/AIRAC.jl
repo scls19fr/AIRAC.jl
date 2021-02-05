@@ -53,7 +53,7 @@ function airac_cycle(year::Int, cycle::Int)
 end
 
 function airac_cycle(::Type{Int}, date::Date = today())
-  t = airac_cycle(date, Tuple)
+  t = airac_cycle(Tuple, date)
   airac_cycle(t[1], t[2])
 end
 
