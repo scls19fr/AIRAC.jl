@@ -11,4 +11,6 @@ AIRAC cycle definition as published in the [ICAO Aeronautical Information Servic
 
 https://en.wikipedia.org/wiki/Aeronautical_Information_Publication
 
-This repository is not maintained by ICAO. Please use this project at your own risk.
+This project provides a Julia library to deal with AIRAC cycle dates.
+
+This project is not maintained by ICAO. Please use this project at your own risk.
