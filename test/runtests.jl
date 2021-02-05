@@ -1,6 +1,7 @@
 using AIRAC
 using AIRAC: airac_date
-using AIRAC: airac_first_cycle_date, airac_last_cycle_date, airac_cycle_dates
+using AIRAC: airac_first_cycle_date, airac_last_cycle_date
+using AIRAC: number_airac_cycles, airac_cycle_dates
 using AIRAC: next, previous
 
 using Test
@@ -33,9 +34,19 @@ using Dates
     end
 
     @testset "airac_number_of_cycles" begin
+        @test collect(airac_cycle_dates(2020)) == [
+            Date("2020-01-02"), Date("2020-01-30"), Date("2020-02-27"),
+            Date("2020-03-26"), Date("2020-04-23"), Date("2020-05-21"),
+            Date("2020-06-18"), Date("2020-07-16"), Date("2020-08-13"),
+            Date("2020-09-10"), Date("2020-10-08"), Date("2020-11-05"),
+            Date("2020-12-03"), Date("2020-12-31")  
+        ]
+    end
+
+    @testset "airac_number_of_cycles" begin
         exceptions = [2020, 2043]
         for year in 2003:2050
-            n = length(airac_cycle_dates(year))
+            n = number_airac_cycles(year)
             if !(year in exceptions)
                 @test n == 13
             else

@@ -37,6 +37,10 @@ function airac_cycle_dates(year)
   airac_first_cycle_date(year):airac_interval:airac_last_cycle_date(year)
 end
 
+function number_airac_cycles(year)
+  length(airac_cycle_dates(year))
+end
+
 function airac_cycle(::Type{Tuple}, date::Date = today())
   date = airac_date(date)
   airac_year = year(date)
