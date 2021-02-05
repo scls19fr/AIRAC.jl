@@ -3,6 +3,9 @@ uuid = "00c9ed9b-6f42-40f4-baa2-baa5a6d924cd"
 authors = ["Sébastien Celles <s.celles@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+
 [compat]
 julia = "1"
 
