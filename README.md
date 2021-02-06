@@ -95,6 +95,13 @@ julia> Airac.(airac_cycle_dates(2021))
  Airac(2113, 2021-12-30)
 ```
 
+### Parsing an AIRAC ident string
+
+```julia
+julia> parse(Airac, "1913")
+Airac(1913, 2019-12-05)
+```
+
 ### More informations
 
 More informations can be found by watching at code:
