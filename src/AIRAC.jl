@@ -1,7 +1,7 @@
 module AIRAC
 
 export Airac, AiracDiff
-import Base: show, zero, parse, isless
+import Base: show, zero, parse, isless, rem
 import Base: +, -
 
 using Dates
@@ -35,9 +35,9 @@ function airac_last_cycle_date(year)
   airac_date(Date(year, 12, 31))
 end
 
-function airac_cycle_dates(year)
-  airac_first_cycle_date(year):airac_interval:airac_last_cycle_date(year)
-end
+# function airac_cycle_dates(year)
+#   airac_first_cycle_date(year):airac_interval:airac_last_cycle_date(year)
+# end
 
 function number_airac_cycles(year)
   length(airac_cycle_dates(year))
@@ -79,13 +79,24 @@ end
 
 show(io::IO, a::Airac) = print(io, "Airac($(a.ident), $(a.date))")
 
+function airac_cycle_dates(a1::Airac, a2::Airac)
+  # ToDo: implement range (a1:AiracDiff():a2 and a1:a2)
+  Airac.(a1.date:airac_interval:a2.date)
+end
+
+function airac_cycle_dates(year)
+  airac_cycle_dates(Airac(airac_first_cycle_date(year)), Airac(airac_last_cycle_date(year)))
+end
+
+
 struct AiracDiff
   value::Int
 end
 AiracDiff() = AiracDiff(1)
 
 zero(ad::AiracDiff) = AiracDiff(0)
-
+isless(ad1::AiracDiff, ad2::AiracDiff) = isless(ad1.value, ad2.value)
+rem(ad1::AiracDiff, ad2::AiracDiff) = rem(ad1.value, ad2.value)
 
 function parse(::Type{Airac}, ident::Int)
   cycle = ident % 100

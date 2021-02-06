@@ -35,13 +35,13 @@ using Dates
     end
 
     @testset "airac_number_of_cycles" begin
-        @test collect(airac_cycle_dates(2020)) == [
+        @test collect(airac_cycle_dates(2020)) == Airac.([
             Date("2020-01-02"), Date("2020-01-30"), Date("2020-02-27"),
             Date("2020-03-26"), Date("2020-04-23"), Date("2020-05-21"),
             Date("2020-06-18"), Date("2020-07-16"), Date("2020-08-13"),
             Date("2020-09-10"), Date("2020-10-08"), Date("2020-11-05"),
             Date("2020-12-03"), Date("2020-12-31")  
-        ]
+        ])
     end
 
     @testset "airac_number_of_cycles" begin
@@ -111,6 +111,6 @@ using Dates
         a2 = Airac(2023) - AiracDiff()
         # ToFix
         # r = a1:AiracDiff():a2
-        # r = a1:a2
+        #r = a1:a2
     end
 end
