@@ -87,6 +87,11 @@ using Dates
         @test airac.ident == 1913
     end
 
+    @testset "Airac string representation" begin
+        @test string(Airac(2021)) == "Airac(2101, 2021-01-28)"
+    end
+
+
     @testset "parse Airac ident" begin
         @test parse(Airac, "1913").date == Date(2019, 12, 5)
         @test parse(Airac, "2001").date == Date(2020, 1, 2)

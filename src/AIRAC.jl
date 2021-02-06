@@ -75,6 +75,9 @@ function Airac(year)
   Airac(airac_first_cycle_date(year))
 end
 
+import Base: show
+show(io::IO, a::Airac) = print(io, "Airac($(a.ident), $(a.date))")
+
 import Base: parse
 
 function parse(::Type{Airac}, ident::Int)
