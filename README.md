@@ -61,14 +61,15 @@ julia> airac.year
 
 ### Iterating over AIRAC cycle
 ```julia
-julia> using AIRAC: next, previous
-
 julia> airac = Airac(2021)
 
-julia> next(airac)
+julia> airac + AiracDiff()
 Airac(2102, 2021-02-25)
 
-julia> previous(airac)
+julia> airac + AiracDiff(12)
+Airac(2113, 2021-12-30)
+
+julia> airac - AiracDiff()
 Airac(2014, 2020-12-31)
 ```
 

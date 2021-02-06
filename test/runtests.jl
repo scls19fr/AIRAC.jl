@@ -3,7 +3,7 @@ using AIRAC: airac_date
 using AIRAC: airac_first_cycle_date, airac_last_cycle_date
 using AIRAC: number_airac_cycles, airac_cycle_dates
 using AIRAC: airac_cycle
-using AIRAC: next, previous
+using AIRAC: AiracDiff
 
 using Test
 using Dates
@@ -73,14 +73,13 @@ using Dates
         @test airac.cycle == 1
         @test airac.ident == 2001
 
-        airac = next(airac)
+        airac = airac + AiracDiff()
         @test airac.date == Date(2020, 1, 30)
         @test airac.year == 2020
         @test airac.cycle == 2
         @test airac.ident == 2002
 
-        airac = previous(airac)
-        airac = previous(airac)
+        airac = airac - AiracDiff(2)
         @test airac.date == Date(2019, 12, 5)
         @test airac.year == 2019
         @test airac.cycle == 13
@@ -103,8 +102,15 @@ using Dates
 
     @testset "Airac comparison" begin
         @test Airac() == Airac()
-        @test next(Airac()) > Airac()
-        @test previous(Airac()) < Airac()
+        @test Airac() + AiracDiff() > Airac()
+        @test Airac() - AiracDiff() < Airac()
     end
 
+    @testset "Airac range" begin
+        a1 = Airac(2018)
+        a2 = Airac(2023) - AiracDiff()
+        # ToFix
+        # r = a1:AiracDiff():a2
+        # r = a1:a2
+    end
 end
