@@ -99,4 +99,4 @@ julia> Airac.(airac_cycle_dates(2021))
 More informations can be found by watching at code:
 
 - [code](src/AIRAC.jl)
-- [test](test/runtests.jl)
+- [tests](test/runtests.jl)
