@@ -118,8 +118,7 @@ using Dates
     @testset "Airac range" begin
         a1 = Airac(2018)
         a2 = Airac(2019) - AiracDiff()
-        # ToFix
-        # r = a1:AiracDiff():a2
+        r = a1:a2
         expected = [
             parse(Airac, "1801"),
             parse(Airac, "1802"),
@@ -135,9 +134,9 @@ using Dates
             parse(Airac, "1812"),
             parse(Airac, "1813"),
         ]
-        # @test collect(r) == expected
+        @test collect(r) == expected
 
-        # r = a1:a2
-        # @test collect(r) == expected
+        r = a1:AiracDiff():a2
+        @test collect(r) == expected
     end
 end

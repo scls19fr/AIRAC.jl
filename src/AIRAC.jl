@@ -2,9 +2,9 @@ module AIRAC
 
 export Airac, AiracDiff
 import Base: show, zero, parse, isless
-# import Base: div, rem
 import Base: range
 import Base: +, -
+import Base: oftype, rem, div, Integer
 
 using Dates
 
@@ -131,17 +131,10 @@ function +(ad1::AiracDiff, ad2::AiracDiff)
   AiracDiff(ad1.value + ad2.value)
 end
 
-#=
-function range(start::Airac, stop::Airac)
-
-end
-
 rem(ad1::AiracDiff, ad2::AiracDiff) = AiracDiff(rem(ad1.value, ad2.value))
-
-function div(ad1::AiracDiff, ad2::AiracDiff, rounding_mode)
-  AiracDiff(div(ad1.value, ad2.value, rounding_mode))
-end
-=#
+div(ad1::AiracDiff, ad2::AiracDiff, rounding_mode) = AiracDiff(div(ad1.value, ad2.value, rounding_mode))
+oftype(ad::AiracDiff, n) = AiracDiff(n)
+Integer(ad::AiracDiff) = ad.value
 
 function isless(airac1::Airac, airac2::Airac)
   isless(airac1.date, airac2.date)
