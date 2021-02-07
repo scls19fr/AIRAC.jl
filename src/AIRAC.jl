@@ -1,7 +1,9 @@
 module AIRAC
 
 export Airac, AiracDiff
-import Base: show, zero, parse, isless, rem
+import Base: show, zero, parse, isless
+# import Base: div, rem
+import Base: range
 import Base: +, -
 
 using Dates
@@ -96,7 +98,6 @@ AiracDiff() = AiracDiff(1)
 
 zero(ad::AiracDiff) = AiracDiff(0)
 isless(ad1::AiracDiff, ad2::AiracDiff) = isless(ad1.value, ad2.value)
-rem(ad1::AiracDiff, ad2::AiracDiff) = rem(ad1.value, ad2.value)
 
 function parse(::Type{Airac}, ident::Int)
   cycle = ident % 100
@@ -125,6 +126,22 @@ function -(a1::Airac, a2::Airac)
   days = (a1.date - a2.date).value
   AiracDiff(days ÷ airac_interval.value)
 end
+
+function +(ad1::AiracDiff, ad2::AiracDiff)
+  AiracDiff(ad1.value + ad2.value)
+end
+
+#=
+function range(start::Airac, stop::Airac)
+
+end
+
+rem(ad1::AiracDiff, ad2::AiracDiff) = AiracDiff(rem(ad1.value, ad2.value))
+
+function div(ad1::AiracDiff, ad2::AiracDiff, rounding_mode)
+  AiracDiff(div(ad1.value, ad2.value, rounding_mode))
+end
+=#
 
 function isless(airac1::Airac, airac2::Airac)
   isless(airac1.date, airac2.date)

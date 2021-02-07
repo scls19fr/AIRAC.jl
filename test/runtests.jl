@@ -106,11 +106,38 @@ using Dates
         @test Airac() - AiracDiff() < Airac()
     end
 
+    # ToDo : Airac from year and cycle
+    #2018, 1
+    #2018, 2
+
+    # support cycle parameter negative
+    # 2018, -1 : last cycle of 2018
+
+    # 2018, 0 should raises an exception
+
     @testset "Airac range" begin
         a1 = Airac(2018)
-        a2 = Airac(2023) - AiracDiff()
+        a2 = Airac(2019) - AiracDiff()
         # ToFix
         # r = a1:AiracDiff():a2
-        #r = a1:a2
+        expected = [
+            parse(Airac, "1801"),
+            parse(Airac, "1802"),
+            parse(Airac, "1803"),
+            parse(Airac, "1804"),
+            parse(Airac, "1805"),
+            parse(Airac, "1806"),
+            parse(Airac, "1807"),
+            parse(Airac, "1808"),
+            parse(Airac, "1809"),
+            parse(Airac, "1810"),
+            parse(Airac, "1811"),
+            parse(Airac, "1812"),
+            parse(Airac, "1813"),
+        ]
+        # @test collect(r) == expected
+
+        # r = a1:a2
+        # @test collect(r) == expected
     end
 end
